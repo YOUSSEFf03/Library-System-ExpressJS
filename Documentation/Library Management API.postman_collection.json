@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "4dd22035-66c0-4763-bf41-737880b61e37",
+		"name": "Library Management API",
+		"description": "StartFragmentAPIs for managing books, authors, and members.EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40355306"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Add a new book.",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": { \"en\": \"The Great Book\", \"ar\": \"الكتاب العظيم\" },\r\n  \"isbn\": \"978-0-596-52068-7\",\r\n  \"genre\": \"Fiction\",\r\n  \"description\": { \"en\": \"A great fictional story.\", \"ar\": \"قصة خيالية رائعة.\" },\r\n  \"numberOfAvailableCopies\": 10,\r\n  \"isBorrowable\": true,\r\n  \"numberOfBorrowableDays\": 14,\r\n  \"isOpenToReviews\": true,\r\n  \"minAge\": 18,\r\n  \"authorId\": \"INSERT_AUTHOR_ID_HERE\",\r\n  \"coverImageUrl\": \"uploads/great_book.jpg\",\r\n  \"publishedDate\": \"2023-06-15\",\r\n  \"isPublished\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/books"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all books.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/books"
+					},
+					"response": []
+				},
+				{
+					"name": "Book by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/books/675ad0ca692d35c345a46853"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": {\r\n    \"en\": \"The Mystery of Shadows (Updated)\",\r\n    \"ar\": \"غموض الظلال (محدث)\"\r\n  },\r\n  \"description\": {\r\n    \"en\": \"An exciting adventure into new realms.\",\r\n    \"ar\": \"مغامرة مثيرة في عوالم جديدة.\"\r\n  },\r\n  \"isbn\": \"978-1-234-56789-0\",  // The ISBN stays the same\r\n  \"genre\": \"Fantasy\",\r\n  \"numberOfAvailableCopies\": 20,  // Updated number of copies\r\n  \"isBorrowable\": true,\r\n  \"numberOfBorrowableDays\": 14,\r\n  \"isOpenToReviews\": true,  // Updated to true, now open to reviews\r\n  \"minAge\": 18,  // Updated minimum age\r\n  \"authorId\": \"675951ed63fcebd842ea9e6f\",\r\n  \"coverImageUrl\": \"uploads/mystery_shadows_updated.jpg\",  // Add cover image URL if needed\r\n  \"publishedDate\": \"2023-06-15T00:00:00.000Z\",  // Published date stays the same\r\n  \"isPublished\": true,  // Published status stays the same\r\n  \"updatedAt\": \"2024-12-12T12:45:00.000Z\"  // Updated time\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/books/675ad0ca692d35c345a46853"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Author",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/authors/675ad0ca692d35c345a46853"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Create a Member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Alice Williams\",\r\n  \"email\": \"alice.williams@example.com\",\r\n  \"username\": \"alicewilliams\",\r\n  \"birthDate\": \"1995-08-20T00:00:00.000Z\",\r\n  \"subscribedBooks\": [\"bookId1\", \"bookId3\"],\r\n  \"borrowedBooks\": [],\r\n  \"returnRate\": 90\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/members"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Member",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Member by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/members?search=David",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"members"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "David"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginated Results",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Sorted Results",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Member",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"David Green\",\r\n        \"username\": \"david_green_the_seoncd\",\r\n        \"email\": \"david.green@example.com\",\r\n        \"borrowedBooks\": [],\r\n        \"returnRate\": 85\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/members/675ad14c692d35c345a46855"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Member",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/members/675ad14c692d35c345a46855"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Create a New Author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": {\r\n    \"en\": \"Emily Carter\",\r\n    \"ar\": \"إميلي كارتر\"\r\n  },\r\n  \"email\": \"emily.carter@example.com\",\r\n  \"biography\": {\r\n    \"en\": \"Emily is a renowned fantasy author.\",\r\n    \"ar\": \"إميلي كاتبة معروفة في مجال الفانتازيا.\"\r\n  },\r\n  \"profileImageUrl\": \"uploads/emily_carter.jpg\",\r\n  \"birthDate\": \"1985-10-20T00:00:00.000Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/authors"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Authors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/authors"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Author",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": {\r\n        \"en\": \"Emma Brown\",\r\n        \"ar\": \"إيما براون\"\r\n    },\r\n    \"biography\": {\r\n        \"en\": \"An experienced writer in the fantasy genre.\",\r\n        \"ar\": \"كاتبة مخضرمة في نوع الخيال.\"\r\n    },\r\n    \"_id\": \"675ad04b692d35c345a4684e\",\r\n    \"email\": \"emma.brown@example.com\",\r\n    \"profileImageUrl\": \"uploads/emma_brown.jpg\",\r\n    \"birthDate\": \"1980-03-20T00:00:00.000Z\",\r\n    \"createdAt\": \"2024-12-12T12:00:11.974Z\",\r\n    \"updatedAt\": \"2024-12-12T12:00:11.974Z\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/authors/675ad04b692d35c345a4684e"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Author",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/authors/675ad04b692d35c345a4684e"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Web",
+			"item": [
+				{
+					"name": "Books",
+					"item": [
+						{
+							"name": "Fetch All Published Books",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/web/books"
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Specific Book by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/web/books/675ad0ca692d35c345a46853"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Members",
+					"item": [
+						{
+							"name": "Get Member Profile by ID",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get Borrowed Books with Flags",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/web/members/675ad14c692d35c345a46855/borrowed-books"
+							},
+							"response": []
+						},
+						{
+							"name": "Borrow a Book",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Return a Borrowed Book",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Subscribe to a Book",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Unsubscribe from a Book",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Authors",
+					"item": [
+						{
+							"name": "Get Author Profile",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
